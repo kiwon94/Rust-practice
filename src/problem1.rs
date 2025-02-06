@@ -9,5 +9,5 @@ pub fn solve() {
     let num1: i32 = 12;
     let num2: i32 = 5;
     let num3: i32 = add(num1, num2);
-    println!("The sum of {} and {} is {}", num1, num2, num3);
+    println!("The sum of {num1} and {num2} is {num3}");
 }
