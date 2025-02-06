@@ -83,4 +83,6 @@ fn main() {
         v2.push(sum.clone());
     }
     println!("{:?}", v2);
+
+    println!("{:?}", v2);
 }
