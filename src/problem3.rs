@@ -15,23 +15,4 @@ pub fn solve() {
         }
     }
     println!("{:?}", v2);
-
-    // Solution for Problem 3 (String ver.)
-    // let v1: Vec<&str> = vec!["0", "2", "1", "5", "3", "4"];
-    // let mut v2: Vec<&str> = Vec::new();
-    // for val in v1.iter() {
-    //     match val.parse::<usize>() {
-    //         Ok(index) => {
-    //             if index < v1.len() {
-    //                 v2.push(v1[index]);
-    //             } else {
-    //                 println!("Invalid index: {}", val);
-    //             }
-    //         }
-    //         Err(_) => {
-    //             println!("Failed to parse index: {}", val);
-    //         }
-    //     }
-    // }
-    // println!("{:?}", v2);
 }

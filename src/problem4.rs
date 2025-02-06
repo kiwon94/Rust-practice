@@ -10,14 +10,4 @@ pub fn solve() {
         v2.push(sum);
     }
     println!("{:?}", v2);
-
-    // Solution for Problem 4 (String ver.)
-    // let chars = vec!['H', 'e', 'l', 'l', 'o'];
-    // let mut v2: Vec<String> = Vec::new();
-    // let mut sum: String = String::new();
-    // for val in chars.iter() {
-    //     sum.push(*val);
-    //     v2.push(&sum);
-    // }
-    // println!("{:?}", v2);
 }
