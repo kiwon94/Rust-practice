@@ -5,6 +5,7 @@ mod problem4;
 mod problem5;
 mod problem6;
 mod problem7;
+mod problem8;
 use std::env;
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -27,6 +28,7 @@ fn main() {
         5 => problem5::solve(),
         6 => problem6::solve(),
         7 => problem7::solve(),
+        8 => problem8::solve(),
         _ => println!("Problem not found"),
     }
 }
