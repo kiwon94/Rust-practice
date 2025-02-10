@@ -1,5 +1,6 @@
 mod problem1;
 mod problem10;
+mod problem14;
 mod problem2;
 mod problem3;
 mod problem4;
@@ -33,6 +34,7 @@ fn main() {
         8 => problem8::solve(),
         9 => problem9::solve(),
         10 => problem10::solve(),
+        14 => problem14::solve(),
         _ => println!("Problem not found"),
     }
 }
