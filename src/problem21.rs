@@ -7,12 +7,12 @@ pub struct ListNode {
     pub next: Option<Box<ListNode>>,
 }
 
-impl ListNode {
-    #[inline]
-    fn new(val: i32) -> Self {
-        ListNode { next: None, val }
-    }
-}
+// impl ListNode {
+//     #[inline]
+//     fn new(val: i32) -> Self {
+//         ListNode { next: None, val }
+//     }
+// }
 
 fn get_decimal_value(head: Option<Box<ListNode>>) -> i32 {
     let mut binary_digits = Vec::new();
