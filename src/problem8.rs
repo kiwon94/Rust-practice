@@ -1,19 +1,14 @@
+// Problem 8. Number of Good Pairs
 use std::collections::HashMap;
-fn combination_2(n: i32) -> i32 {
-    n * (n - 1) / 2
-}
 fn num_good_pairs(nums: &Vec<i32>) -> i32 {
     let mut good_dict = HashMap::new();
     for val in nums {
-        *good_dict.entry(val).or_insert(0) += 1;
+        good_dict
+            .entry(val)
+            .and_modify(|x| *x = *x + *x + 1)
+            .or_insert(0);
     }
-
-    let sum: i32 = good_dict
-        .values()
-        .filter(|&&x| x > 1)
-        .map(|&x| combination_2(x))
-        .sum();
-    sum
+    good_dict.values().sum()
 }
 
 pub fn solve() {
