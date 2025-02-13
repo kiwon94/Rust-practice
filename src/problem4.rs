@@ -1,12 +1,11 @@
 // Problem 4. Running Sum of 1D Array
 fn running_sum(v1: &[i32]) -> Vec<i32> {
-    let mut v2: Vec<i32> = Vec::new();
-    let mut sum: i32 = 0;
-    for val in v1 {
-        sum += *val;
-        v2.push(sum);
-    }
-    v2
+    v1.iter()
+        .scan(0, |state, &x| {
+            *state += x;
+            Some(*state)
+        })
+        .collect()
 }
 pub fn solve() {
     // Solution for Problem 4
