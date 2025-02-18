@@ -5,12 +5,14 @@ fn sort_sentence(s: &str) -> String {
     let mut words_with_index: Vec<(usize, &str)> = words
         .iter()
         .map(|x| {
-            let index = x
-                .chars()
-                .last()
-                .expect("Each word has at aleast one character")
-                .to_digit(10)
-                .expect("Failed to convert char to digit") as usize;
+            let index = usize::try_from(
+                x.chars()
+                    .last()
+                    .expect("Each word has at aleast one character")
+                    .to_digit(10)
+                    .expect("Failed to convert char to digit"),
+            )
+            .expect("Failed to convert digit to usize");
             let words_stripped = &x[..x.len() - 1];
             (index, words_stripped)
         })

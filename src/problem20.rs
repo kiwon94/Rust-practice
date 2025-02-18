@@ -7,7 +7,7 @@ fn decode_message(key: &str, message: &str) -> String {
     for ch in key.chars() {
         if ch != ' ' && !char_map.contains_key(&ch) {
             char_map.insert(ch, next_char);
-            next_char = (next_char as u8 + 1) as char;
+            next_char = char::from(u8::try_from(next_char).expect("Can't convert char to u8") + 1);
         }
     }
 
