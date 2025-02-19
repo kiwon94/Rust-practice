@@ -1,33 +1,33 @@
 // Problem 20 - Decode the Message
+use std::char::TryFromCharError;
 use std::collections::HashMap;
-fn decode_message(key: &str, message: &str) -> String {
+fn decode_message(key: &str, message: &str) -> Result<String, TryFromCharError> {
     let mut char_map: HashMap<char, char> = HashMap::new();
     let mut next_char = 'a';
 
     for ch in key.chars() {
         if ch != ' ' && !char_map.contains_key(&ch) {
             char_map.insert(ch, next_char);
-            next_char = char::from(u8::try_from(next_char).expect("Can't convert char to u8") + 1);
+            next_char = char::from(u8::try_from(next_char)? + 1);
         }
     }
 
-    message
+    Ok(message
         .chars()
-        .map(|ch| {
-            if ch == ' ' {
-                ' '
-            } else {
-                *char_map
-                    .get(&ch)
-                    .expect("Input should be only lowercase alphabets and whitespaces")
-            }
-        })
-        .collect()
+        .map(|ch| *char_map.get(&ch).unwrap_or(&' '))
+        .collect())
 }
 
 pub fn solve() {
     let key = "the quick brown fox jumps over the lazy dog";
     let message = "vkbs bs t suepuv";
-    let result = decode_message(key, message);
-    println!("Decoded message: {result}");
+    match decode_message(key, message) {
+        Ok(result) => {
+            println!("Decoded result: {result}");
+        }
+
+        Err(e) => {
+            println!("Error: {e}");
+        }
+    }
 }
