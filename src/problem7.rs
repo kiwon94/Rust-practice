@@ -1,27 +1,17 @@
-fn minimum_sum(num: i32) -> i32 {
-    let num_string = num.to_string();
-    let mut digits: Vec<i32> = num_string
+fn minimum_sum(num: i32) -> Result<u32, String> {
+    let s = num.to_string();
+    let mut digits: Vec<u32> = s
         .chars()
-        .map(|x| {
-            x.to_string()
-                .parse::<i32>()
-                .expect("Invalid input. Must use positive integer consisting of four digits.")
-        })
-        .collect();
+        .map(|c| c.to_digit(10).ok_or("Invalid digit".to_string()))
+        .collect::<Result<Vec<u32>, String>>()?;
     digits.sort_unstable();
-
-    let small1 = digits[0];
-    let small2 = digits[1];
-    let large1 = digits[2];
-    let large2 = digits[3];
-
-    let result: i32 = 10 * (small1 + small2) + large1 + large2;
-
-    result
+    Ok(10 * (digits[0] + digits[1]) + digits[2] + digits[3])
 }
 
 pub fn solve() {
-    let num = 3524;
-    let sum = minimum_sum(num);
-    println!("The minimum sum of two numbers is: {sum}");
+    let num = 5234;
+    match minimum_sum(num) {
+        Ok(sum) => println!("The minimum sum is: {sum}"),
+        Err(e) => println!("Error: {e}"),
+    }
 }

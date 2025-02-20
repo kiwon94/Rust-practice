@@ -1,12 +1,6 @@
 // Problem 14. Maximum Number of Words Found in Sentences
-fn most_words_found(sentences: &[String]) -> i32 {
-    sentences
-        .iter()
-        .map(|x| {
-            i32::try_from(x.split_whitespace().count()).expect("Failed to convert count to i32")
-        })
-        .max()
-        .expect("There must be at lest one sentene")
+fn most_words_found(sentences: &[String]) -> Option<usize> {
+    sentences.iter().map(|x| x.split_whitespace().count()).max()
 }
 
 pub fn solve() {
@@ -15,6 +9,8 @@ pub fn solve() {
         "i think so too".to_string(),
         "this is great thanks very much".to_string(),
     ];
-    let result = most_words_found(&sentences);
-    println!("Max number of words found: {result}");
+    match most_words_found(&sentences) {
+        Some(result) => println!("The max number of words found is : {result:?}"),
+        None => println!("Error: Empty input"),
+    }
 }

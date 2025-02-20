@@ -2,7 +2,11 @@
 fn decode(encoded: &[i32], first: i32) -> Vec<i32> {
     let mut result = vec![first];
     for &val in encoded {
-        result.push(result.last().expect("Empty vector") ^ val);
+        result.push(
+            result.last().expect(
+                "Result vector has at least one element, which is initialized with the first",
+            ) ^ val,
+        );
     }
     result
 }

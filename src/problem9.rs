@@ -1,16 +1,19 @@
 // Problem 9. Kids With the Greatest Number of Candies
-fn kids_with_candies(candies: &[i32], extra_candies: i32) -> Vec<bool> {
-    let max_value = *candies.iter().max().expect("No elements in the vector");
-    let result: Vec<bool> = candies
-        .iter()
-        .map(|x| x + extra_candies >= max_value)
-        .collect();
-    result
+fn kids_with_candies(candies: &[i32], extra_candies: i32) -> Option<Vec<bool>> {
+    let &max_value = candies.iter().max()?;
+    Some(
+        candies
+            .iter()
+            .map(|&c| c + extra_candies >= max_value)
+            .collect(),
+    )
 }
 
 pub fn solve() {
-    let candies: Vec<i32> = vec![2, 3, 5, 1, 3];
-    let extra_candies: i32 = 3;
-    let result = kids_with_candies(&candies, extra_candies);
-    println!("{result:?}");
+    let candies = vec![1, 4, 2, 5];
+    let extra_candies = 3;
+    match kids_with_candies(&candies, extra_candies) {
+        Some(result) => println!("The result array is : {result:?}"),
+        None => println!("Error: Empty input"),
+    }
 }
